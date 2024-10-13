@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Another DM Task</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .progress-bar, .gain-bar {
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .progress-bar-fill, .gain-bar-fill {
+      height: 20px;
+      border-radius: 5px;
+      width: 0;
+      transition: width 0.3s;
+    }
+    .progress-bar-fill {
+      background-color: #76c7c0;
+    }
+    .gain-bar-fill {
+      background-color: #ffcc00;
+    }
+    .bar-label {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 0;
+      left: 0;
+      line-height: 20px;
+      font-size: 14px;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="progress-bar-fill"></div>
+      <div class="bar-label">Progress</div>
+    </div>
+    <div class="gain-bar">
+      <div class="gain-bar-fill" id="gain-bar-fill"></div>
+      <div class="bar-label">Total Gain</div>
+    </div>
+    <div id="task">
+      <div class="question" id="question"></div>
+      <div class="options">
+        <button id="option1" onclick="chooseOption(1)"></button>
+        <button id="option2" onclick="chooseOption(2)"></button>
+      </div>
+      <p id="trial-number"></p>
+      <p id="total-gain"></p>
+    </div>
+    <div id="results" style="display: none;">
+      <h2>Thank you for completing the task!</h2>
+      <p id="resultSummary"></p>
+      <p id="kCoefficient"></p>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      { immediate: 54, delayed: 55, delay: 117 },
+      { immediate: 55, delayed: 75, delay: 61 },
+      { immediate: 19, delayed: 25, delay: 53 },
+      { immediate: 31, delayed: 85, delay: 7 },
+      { immediate: 14, delayed: 25, delay: 19 },
+      { immediate: 47, delayed: 50, delay: 160 },
+      { immediate: 15, delayed: 35, delay: 13 },
+      { immediate: 25, delayed: 60, delay: 14 },
+      { immediate: 78, delayed: 80, delay: 162 },
+      { immediate: 40, delayed: 55, delay: 62 },
+      { immediate: 11, delayed: 30, delay: 7 },
+      { immediate: 67, delayed: 75, delay: 119 },
+      { immediate: 34, delayed: 35, delay: 186 },
+      { immediate: 27, delayed: 50, delay: 21 },
+      { immediate: 69, delayed: 85, delay: 91 },
+      { immediate: 49, delayed: 60, delay: 89 },
+      { immediate: 80, delayed: 85, delay: 157 },
+      { immediate: 24, delayed: 35, delay: 29 },
+      { immediate: 33, delayed: 80, delay: 14 },
+      { immediate: 28, delayed: 30, delay: 179 },
+      { immediate: 34, delayed: 50, delay: 30 },
+      { immediate: 25, delayed: 30, delay: 80 },
+      { immediate: 41, delayed: 75, delay: 20 },
+      { immediate: 54, delayed: 60, delay: 111 },
+      { immediate: 54, delayed: 80, delay: 30 },
+      { immediate: 22, delayed: 25, delay: 136 },
+      { immediate: 20, delayed: 55, delay: 7 }
+    ];
+
+    let currentQuestion = 0;
+    let choices = [];
+    let totalGain = 0;
+
+    function loadQuestion() {
+      if (currentQuestion < questions.length) {
+        document.getElementById('question').innerText = `Would you prefer:`;
+        document.getElementById('option1').innerText = `$${questions[currentQuestion].immediate} today`;
+        document.getElementById('option2').innerText = `$${questions[currentQuestion].delayed} in ${questions[currentQuestion].delay} days`;
+        document.getElementById('trial-number').innerText = `Trial ${currentQuestion + 1} of ${questions.length}`;
+        updateProgressBar();
+      } else {
+        showResults();
+      }
+    }
+
+    function chooseOption(option) {
+      const choice = questions[currentQuestion];
+      choices.push({
+        immediate: choice.immediate,
+        delayed: choice.delayed,
+        delay: choice.delay,
+        choice: option
+      });
+
+      if (option === 1) {
+        totalGain += choice.immediate;
+      } else {
+        totalGain += choice.delayed;
+      }
+
+      document.getElementById('total-gain').innerText = `Total Gain: $${totalGain}`;
+      updateGainBar();
+      currentQuestion++;
+      loadQuestion();
+    }
+
+    function updateProgressBar() {
+      const progress = (currentQuestion / questions.length) * 100;
+      document.getElementById('progress-bar-fill').style.width = `${progress}%`;
+    }
+
+    function updateGainBar() {
+      const maxGain = questions.reduce((sum, q) => sum + q.delayed, 0);
+      const gainProgress = (totalGain / maxGain) * 100;
+      document.getElementById('gain-bar-fill').style.width = `${gainProgress}%`;
+    }
+
+    function calculateK() {
+      let sumK = 0;
+      let count = 0;
+
+      choices.forEach(choice => {
+        if (choice.choice === 1) {
+          const V = choice.immediate;
+          const A = choice.delayed;
+          const D = choice.delay;
+          const k = (A - V) / (V * D);
+          sumK += k;
+          count++;
+        }
+      });
+
+      return count > 0 ? sumK / count : 0;
+    }
+
+    function showResults() {
+      document.getElementById('task').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+      const k = calculateK();
+      document.getElementById('resultSummary').innerText = `You made ${choices.length} choices.`;
+      document.getElementById('kCoefficient').innerText = `Your discount rate (k) is: ${k.toFixed(4)}`;
+    }
+
+    window.onload = loadQuestion;
+  </script>
+</body>
+</html>
