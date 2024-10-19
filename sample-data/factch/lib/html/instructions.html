@@ -1,0 +1,37 @@
+
+<div class="screenBox">
+
+  <!-- TITLE -->
+  <div class="titleBox">
+    <span class="titleSpan"> INSTRUCTIONS </span>
+  </div>
+
+  <!-- BODY -->
+  <div class="bodyBox">
+    <p>
+      Now please switch to fullscreen mode in order to start the experiment!
+      (Once you click "Start", it can take time because the experiment is loading)
+    </p>
+  </div>
+  
+  <!-- BUTTON -->
+  <button class="buttonBox"
+          type="button"
+          onClick="if(isFullscreen()) {startExperiment();} "
+          id="startButton"
+          disabled>
+         Start
+  </button>
+  
+  <!-- FULLSCREEN -->
+  <button class="buttonBox fullscreenBox"
+          type="button"
+          onClick="
+            onFullscreen();
+            document.getElementById('startButton').disabled = false;
+            "
+          id="fullButton">
+         Go fullscreen
+  </button>
+  
+</div>

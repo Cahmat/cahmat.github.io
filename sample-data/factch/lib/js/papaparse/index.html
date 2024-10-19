@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://www.hipexperiments.co.uk/sandbox/tasks/jacques/basic_jsPsych/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Let's try jsPsych!</title>
+    <script src="./index_files/jspsych@7.1.2"></script>
+    <script src="./index_files/plugin-image-keyboard-response@1.1.0"></script>
+    <script src="./index_files/plugin-html-button-response@1.1.0"></script>
+    <script src="./index_files/plugin-html-keyboard-response@1.1.0"></script>
+    <script src="./index_files/plugin-fullscreen@1.1.0"></script>
+    <script src="./index_files/plugin-preload@1.1.0"></script>
+    <script src="./index_files/plugin-survey-text@1.1.0"></script>
+    <script src="./index_files/exp_main.js"></script>
+    <script src="./index_files/exp_parameters.js"></script>
+    <script src="./index_files/exp_save.js"></script>
+    <script src="./index_files/exp_timeline.js"></script>
+    <script src="./index_files/bloc_start.js"></script>
+    <script src="./index_files/bloc_main.js"></script>
+    <script src="./index_files/bloc_end.js"></script>
+    <script src="./index_files/jquery-3.5.1.min.js"></script>
+    <script src="./index_files/log.js"></script>
+    <script src="./index_files/write_header.js"></script>
+    <script src="./index_files/web.js"></script>
+    <script src="./index_files/screen.js"></script>
+    <link href="./index_files/jspsych.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./index_files/my_experiment_style.css">
+    <link href="./index_files/html_templates.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+
+<body>
+
+<script>
+// Setup experiment name
+const task_name = "Let's try jsPsych!"
+
+// Initiate boolean for task running
+var experiment_running = false
+
+// Define experiment parameters
+var params = returnExperimentParameters()
+
+// Initiate HTML page
+writeHeader(task_name)
+
+// If participant exit fullscreen --> call finishExperimentResize()
+$(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', finishExperimentResize);
+
+// Lauch experiment
+// From this starting point, the HTML files chains and the last one call "startExperiment()"
+goWebsite(html_start)
+</script>                      <title>Let's try jsPsych!</title>                      <div id="webbodyDiv">
+<div class="screenBox">
+
+  <!-- TITLE -->
+  <div class="titleBox">
+    <span class="titleSpan"> BEFORE STARTING </span>
+  </div>
+
+  <!-- BODY -->
+  <div class="bodyBox">
+    <p>
+      Before running the task, we will require you to read, understand and agree with a consent form, read carefully the guidelines describing what you will have to do.
+    </p><p>
+      Additionally, we need to ask you to <b><u>run the whole task in fullscreen</u></b> and focus exclusively on the task you are about to do. This is very important - so please close all "chat" applications, games, etc. At any time before you get your verification code, <b><u>if you leave the fullscreen mode, the task may be cancelled!</u></b> Changing the resolution of your display will have the same unfortunate effect!
+    </p><p>
+      If the task is cancelled or you run into any technical issues, contact us at neuronoodle@gmail.com and <b><u>do not restart the task</u></b>. This is important because it's a learning experiment, and restarting the experiment may affect its outcome.
+    </p><p>
+      In general, if you have any issues or questions, please put yourself in contact with neuronoodle@gmail.com and let us know what happened. Don't forget to specify the task you are running (see the title of this website).
+    </p>
+  </div>
+
+  <!-- BUTTON -->
+  <button class="buttonBox" onclick="goWebsite(html_infosheet)">
+    Continue
+  </button>
+
+</div>
+</div>            
+
+</body></html>
