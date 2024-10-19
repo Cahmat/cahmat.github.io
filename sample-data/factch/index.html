@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>multiGeometry_Curriculum</title>
+    <script src="lib/jspsych/jspsych.js"></script>
+    <script src="lib/jspsych/plugin-image-keyboard-response.js"></script>
+    <script src="lib/jspsych/plugin-image-button-response.js"></script>
+    <script src="lib/jspsych/plugin-html-button-response.js"></script>
+    <script src="lib/jspsych/plugin-html-keyboard-response.js"></script>
+    <script src="lib/jspsych/plugin-audio-keyboard-response.js"></script>
+    <script src="lib/jspsych/plugin-audio-button-response.js"></script>
+    <script src="lib/jspsych/plugin-fullscreen.js"></script>
+    <script src="lib/jspsych/plugin-preload.js"></script>
+    <script src="lib/jspsych/plugin-survey-text.js"></script>
+
+    <script src="sub_tasks/spatial_counting/bloc_params_builder_training.js"></script>
+    <script src="sub_tasks/spatial_counting/bloc_instructions.js"></script>
+    <script src="sub_tasks/spatial_counting/bloc_main.js"></script>
+    <script src="sub_tasks/spatial_counting/trial_start.js"></script>
+    <script src="sub_tasks/spatial_counting/trial_main.js"></script>
+    <script src="sub_tasks/spatial_counting/trial_debrief.js"></script>
+
+    <script src="sub_tasks/audio_spatial_sequences/bloc_params_builder_training.js"></script>
+    <script src="sub_tasks/audio_spatial_sequences/bloc_params_builder_training_generalization.js"></script>
+    <script src="sub_tasks/audio_spatial_sequences/bloc_instructions.js"></script>
+    <script src="sub_tasks/audio_spatial_sequences/bloc_main.js"></script>
+    <script src="sub_tasks/audio_spatial_sequences/trial_start.js"></script>
+    <script src="sub_tasks/audio_spatial_sequences/trial_main.js"></script>
+    <script src="sub_tasks/audio_spatial_sequences/trial_debrief.js"></script>
+
+    <script src="sub_tasks/visual_spatial_sequences/bloc_params_builder_training.js"></script>
+    <script src="sub_tasks/visual_spatial_sequences/bloc_params_builder_training_generalization.js"></script>
+    <script src="sub_tasks/visual_spatial_sequences/bloc_instructions.js"></script>
+    <script src="sub_tasks/visual_spatial_sequences/bloc_main.js"></script>
+    <script src="sub_tasks/visual_spatial_sequences/trial_start.js"></script>
+    <script src="sub_tasks/visual_spatial_sequences/trial_main.js"></script>
+    <script src="sub_tasks/visual_spatial_sequences/trial_debrief.js"></script>
+
+    <script src="sub_tasks/audio_visual_sequences/bloc_params_builder_training.js"></script>
+    <script src="sub_tasks/audio_visual_sequences/bloc_params_builder_training_generalization.js"></script>
+    <script src="sub_tasks/audio_visual_sequences/bloc_instructions.js"></script>
+    <script src="sub_tasks/audio_visual_sequences/bloc_main.js"></script>
+    <script src="sub_tasks/audio_visual_sequences/trial_start.js"></script>
+    <script src="sub_tasks/audio_visual_sequences/trial_main.js"></script>
+    <script src="sub_tasks/audio_visual_sequences/trial_debrief.js"></script>
+
+    <script src="sub_tasks/spatial_sequences/bloc_params_builder_training.js"></script>
+    <script src="sub_tasks/spatial_sequences/bloc_params_builder_training_generalization.js"></script>
+    <script src="sub_tasks/spatial_sequences/bloc_instructions.js"></script>
+    <script src="sub_tasks/spatial_sequences/bloc_main.js"></script>
+    <script src="sub_tasks/spatial_sequences/trial_start.js"></script>
+    <script src="sub_tasks/spatial_sequences/trial_main.js"></script>
+    <script src="sub_tasks/spatial_sequences/trial_debrief.js"></script>
+
+    <script src="sub_tasks/visual_sequences/bloc_params_builder_training.js"></script>
+    <script src="sub_tasks/visual_sequences/bloc_params_builder_training_generalization.js"></script>
+    <script src="sub_tasks/visual_sequences/bloc_instructions.js"></script>
+    <script src="sub_tasks/visual_sequences/bloc_main.js"></script>
+    <script src="sub_tasks/visual_sequences/trial_start.js"></script>
+    <script src="sub_tasks/visual_sequences/trial_main.js"></script>
+    <script src="sub_tasks/visual_sequences/trial_debrief.js"></script>
+
+    <script src="sub_tasks/audio_sequences/bloc_params_builder_training.js"></script>
+    <script src="sub_tasks/audio_sequences/bloc_params_builder_training_generalization.js"></script>
+    <script src="sub_tasks/audio_sequences/bloc_instructions.js"></script>
+    <script src="sub_tasks/audio_sequences/bloc_main.js"></script>
+    <script src="sub_tasks/audio_sequences/trial_start.js"></script>
+    <script src="sub_tasks/audio_sequences/trial_main.js"></script>
+    <script src="sub_tasks/audio_sequences/trial_debrief.js"></script>
+
+    <script src="sub_tasks/unique_sound_space_mapping/bloc_params_builder_unique_sound_space_mapping.js"></script>
+    <script src="sub_tasks/unique_sound_space_mapping/bloc_instructions.js"></script>
+    <script src="sub_tasks/unique_sound_space_mapping/bloc_main.js"></script>
+    <script src="sub_tasks/unique_sound_space_mapping/trial_start.js"></script>
+    <script src="sub_tasks/unique_sound_space_mapping/trial_main.js"></script>
+    <script src="sub_tasks/unique_sound_space_mapping/trial_debrief.js"></script>
+
+    <script src="sub_tasks/unique_visual_space_mapping/bloc_params_builder_unique_visual_space_mapping.js"></script>
+    <script src="sub_tasks/unique_visual_space_mapping/bloc_instructions.js"></script>
+    <script src="sub_tasks/unique_visual_space_mapping/bloc_main.js"></script>
+    <script src="sub_tasks/unique_visual_space_mapping/trial_start.js"></script>
+    <script src="sub_tasks/unique_visual_space_mapping/trial_main.js"></script>
+    <script src="sub_tasks/unique_visual_space_mapping/trial_debrief.js"></script>
+
+    <script src="sub_tasks/unique_sound_visual_mapping/bloc_params_builder_unique_sound_visual_mapping.js"></script>
+    <script src="sub_tasks/unique_sound_visual_mapping/bloc_instructions.js"></script>
+    <script src="sub_tasks/unique_sound_visual_mapping/bloc_main.js"></script>
+    <script src="sub_tasks/unique_sound_visual_mapping/trial_start.js"></script>
+    <script src="sub_tasks/unique_sound_visual_mapping/trial_main.js"></script>
+    <script src="sub_tasks/unique_sound_visual_mapping/trial_debrief.js"></script>
+
+    <script src="sub_tasks/start/bloc_start.js"></script>
+
+    <script src="sub_tasks/end/bloc_end.js"></script>
+
+    <script src="exp_main.js"></script>
+    <script src="exp_parameters_utils.js"></script>
+    <script src="exp_parameters.js"></script>
+    <script src="exp_save.js"></script>
+    <script src="exp_timeline.js"></script>
+    <script src="exp_curriculums.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="lib/js/papaparse/papaparse.min.js"></script>
+    <script src="lib/js/papaparse/loadCSV.js"></script>
+    <script src="../../../lib/js/default/log.js"></script>
+    <script src="lib/js/write_header.js"></script>
+    <script src="lib/js/default/web.js"></script>
+    <script src="lib/js/default/screen.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <link href="lib/jspsych/jspsych.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="lib/css/my_experiment_style.css">
+    <link href="lib/css/html_templates.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body>
+</body>
+<script>
+// Setup experiment name
+const task_name = "multiGeometry_Curriculum"
+const date = new Date()
+
+// Get information from the URL
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+const task_version = urlParams.get('task_version')
+const day = urlParams.get('day')
+
+// Setup global variables that will be assigned during the consent form
+var participant_age = NaN
+var participant_gender = NaN
+var participant_turker = NaN
+var participant_sound_system = NaN
+
+// Initiate boolean for task running
+var experiment_running = false
+
+// Initiate HTML page
+writeHeader(task_name)
+
+// If participant exit fullscreen --> call finishExperimentResize()
+$(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', finishExperimentResize);
+
+// Lauch experiment
+// From this starting point, the HTML files chains and the last one call "startExperiment()"
+goWebsite(html_start)
+</script>
+
+</html>
