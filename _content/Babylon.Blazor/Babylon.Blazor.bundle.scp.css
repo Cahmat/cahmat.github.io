@@ -1,0 +1,13 @@
+@import '';
+
+/* _content/Babylon.Blazor/BabylonCanvas.razor.rz.scp.css */
+.my-component[b-r08owmc67b] {
+    border: 2px dashed blue;
+}
+/* _content/Babylon.Blazor/Component1.razor.rz.scp.css */
+.my-component[b-ubg7uyzjz2] {
+    border: 2px dashed red;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('background.png');
+}
